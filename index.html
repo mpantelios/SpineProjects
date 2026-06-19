@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Spine Portfolio - Mike Pantelios</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #eee;
+      height: 100vh;
+      display: flex;
+      overflow: hidden;
+    }
+
+    aside {
+      width: 280px;
+      background: #1b1b1b;
+      border-right: 1px solid #333;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin: 0 0 6px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #aaa;
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    .toc-button {
+      width: 100%;
+      display: block;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      background: #2a2a2a;
+      color: #eee;
+      border: 1px solid #444;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .toc-button:hover {
+      background: #353535;
+    }
+
+    .toc-button.active {
+      background: #4a4a4a;
+      border-color: #777;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    header {
+      height: 56px;
+      padding: 14px 20px;
+      background: #181818;
+      border-bottom: 1px solid #333;
+      font-size: 15px;
+      color: #ddd;
+    }
+
+    iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <aside>
+    <h1>Spine Portfolio</h1>
+    <div class="subtitle">
+      Mike Pantelios<br>
+      Spine Animation / Technical Art samples
+    </div>
+
+    <div id="toc"></div>
+  </aside>
+
+  <main>
+    <header id="projectTitle">Select a project</header>
+    <iframe id="viewer" src=""></iframe>
+  </main>
+
+  <script>
+    const projects = [
+      {
+        title: "3D_Test",
+        path: "3D_Test/3D_Testing.html"
+      },
+      {
+        title: "GeoQuiz_Promo",
+        path: "GeoQuiz_Promo/geoquiz_all_animations.html"
+      },
+      {
+        title: "Klondike_Character",
+        path: "Promo_Characters/Klondike_Character.html"
+      },
+       {
+        title: "Maya_Character",
+        path: "Promo_Characters/Maya_Character.html"
+      },
+       {
+        title: "Yatzy Character",
+        path: "Promo_Characters/Yatzy_Character.html"
+      },
+      {
+        title: "SkylandSaga - Blocking NME - Evil Vine",
+        path: "SkylandSaga/blocking_nme_EvilVine.html"
+      },
+       {
+        title: "SkylandSaga - Blocking NME - Vine",
+        path: "SkylandSaga/blocking_nme_Vine.html"
+      },
+      {
+        title: "SkylandSaga - Simple NME - BallBug",
+        path: "SkylandSaga/simple_nme_BallBug.html"
+      },
+      {
+        title: "SkylandSaga - Simple NME - Bat",
+        path: "SkylandSaga/simple_nme_Bat.html"
+      },
+       {
+        title: "SkylandSaga - Simple NME - BuzzCrab",
+        path: "SkylandSaga/simple_nme_BuzzCrab.html"
+      },
+      {
+        title: "SkylandSaga - Simple NME - Chicken Bird",
+        path: "SkylandSaga/simple_nme_BuzzCrab.html"
+      },
+       {
+        title: "SkylandSaga - Simple NME - Boomerang King",
+        path: "SkylandSaga/simple_nme_chickenBird.html"
+      },
+      {
+        title: "SkylandSaga - Simple NME - Fat Copter",
+        path: "SkylandSaga/simple_nme_FatCopter.html"
+      },
+       {
+        title: "SkylandSaga - Simple NME - Knight Fly",
+        path: "SkylandSaga/simple_nme_KnightFly.html"
+      },
+       {
+        title: "SkylandSaga - Simple NME - Lizard Witch",
+        path: "SkylandSaga/simple_nme_LizardWitch.html"
+      },
+      {
+        title: "SkylandSaga - Simple NME - MechBee",
+        path: "SkylandSaga/simple_nme_MechBee.html"
+      },
+      {
+        title: "SkylandSaga - Simple NME - MechMosquito",
+        path: "SkylandSaga/simple_nme_MechMosquito.html"
+      },
+       {
+        title: "SkylandSaga - Simple NME - Moth",
+        path: "SkylandSaga/simple_nme_Moth.html"
+      },
+       {
+        title: "SkylandSaga - Simple NME - PurpleTurtle",
+        path: "SkylandSaga/simple_nme_PurpleTurtle.html"
+      },
+      {
+        title: "SkylandSaga - Simple NME - Racer",
+        path: "SkylandSaga/simple_nme_Racer.html"
+      },
+       {
+        title: "SkylandSaga - Simple NME - RoboBug",
+        path: "SkylandSaga/simple_nme_Racer.html"
+      },
+       {
+        title: "SkylandSaga - Simple NME - Shotgun Devil",
+        path: "SkylandSaga/simple_nme_shotgunDevil.html"
+      },
+      {
+        title: "SkylandSaga - Simple NME - Silly Bird",
+        path: "SkylandSaga/simple_nme_SillyBird.html"
+      },
+       {
+        title: "SkylandSaga - Simple NME - Snail",
+        path: "SkylandSaga/simple_nme_Snail.html"
+      },
+       {
+        title: "SkylandSaga - Semi Boss - Boomerang King",
+        path: "SkylandSaga/semiboss_Boomerang.html"
+      },
+       {
+        title: "SkylandSaga - Semi Boss - Brain Barrel",
+        path: "SkylandSaga/semiboss_BrainBarrel.html"
+      },
+       {
+        title: "SkylandSaga - Semi Boss - Brain Barrel Minion",
+        path: "SkylandSaga/semiboss_BrainBarrel_minion.html"
+      },
+       {
+        title: "SkylandSaga - Semi Boss - Amazon Centaur",
+        path: "SkylandSaga/semiboss_Centaur.html"
+      },
+      {
+        title: "SkylandSaga - Semi Boss - Coal Shooter",
+        path: "SkylandSaga/semiboss_CoalShooter.html"
+      },
+      {
+        title: "SkylandSaga - Semi Boss - Laser Robot",
+        path: "SkylandSaga/semiboss_LaserRobot.html"
+      },
+        {
+        title: "SkylandSaga - Boss Spider",
+        path: "SkylandSaga/boss_Spider.html"
+      },
+       {
+        title: "SkylandSaga - Boss Carnivorous Plant",
+        path: "SkylandSaga/boss_Plant.html"
+      },
+       {
+        title: "SkylandSaga - UI - Character",
+        path: "SkylandSaga/ui_character.html"
+      },
+       {
+        title: "SkylandSaga - UI - GameOver",
+        path: "SkylandSaga/ui_GameOver.html"
+      },
+      {
+        title: "SkylandSaga - UI - GenericVine",
+        path: "SkylandSaga/ui_GenericVine.html"
+      },
+      {
+        title: "SkylandSaga - UI - Logo",
+        path: "SkylandSaga/ui_logo.html"
+      },
+       {
+        title: "SkylandSaga - UI - Minigame - Box Break",
+        path: "SkylandSaga/ui_minigame_boxBreak.html"
+      },
+        {
+        title: "SkylandSaga - UI - Minigame - Character",
+        path: "SkylandSaga/ui_minigame_character.html"
+      },
+       {
+        title: "SkylandSaga - UI - Minigame - Heart",
+        path: "SkylandSaga/ui_minigame_heart.html"
+      },
+       {
+        title: "SkylandSaga - UI - Minigame - Zonk",
+        path: "SkylandSaga/ui_minigame_zonk.html"
+      },
+      {
+        title: "SkylandSaga - InGame Player",
+        path: "SkylandSaga/ingame_player.html"
+      },
+       {
+        title: "SkylandSaga - Other - Baloon",
+        path: "SkylandSaga/other_baloon.html"
+      },
+       {
+        title: "SkylandSaga - Other - Coin Flower",
+        path: "SkylandSaga/other_Coin_Flower.html"
+      },
+       {
+        title: "SkylandSaga - Other - Proxy Mine",
+        path: "SkylandSaga/other_Proxy_Mine.html"
+      }
+    ];
+
+    const toc = document.getElementById("toc");
+    const viewer = document.getElementById("viewer");
+    const projectTitle = document.getElementById("projectTitle");
+
+    function loadProject(project, button) {
+      viewer.src = project.path;
+      projectTitle.textContent = project.title;
+
+      document
+        .querySelectorAll(".toc-button")
+        .forEach(btn => btn.classList.remove("active"));
+
+      button.classList.add("active");
+    }
+
+    projects.forEach((project, index) => {
+      const button = document.createElement("button");
+      button.className = "toc-button";
+      button.textContent = project.title;
+
+      button.addEventListener("click", () => {
+        loadProject(project, button);
+      });
+
+      toc.appendChild(button);
+
+      if (index === 0) {
+        loadProject(project, button);
+      }
+    });
+  </script>
+
+</body>
+</html>
